@@ -12,7 +12,8 @@
 	<%int a,b;
 		a= 5;
 		b = 10;
+		int tong = a+b;
 	%>
-	<%=b%>
+	<%=tong%>
 </body>
 </html>
