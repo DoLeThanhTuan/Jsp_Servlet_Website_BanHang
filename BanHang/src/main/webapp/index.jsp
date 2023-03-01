@@ -13,7 +13,7 @@
 		a= 5;
 		b = 10;
 		int tong = a+b;
-		if(a>0)
+		if(a>0 && b > 0)
 	%>
 	<%=tong%>
 </body>
