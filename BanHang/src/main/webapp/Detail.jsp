@@ -1,9 +1,3 @@
-<%-- 
-    Document   : Detail
-    Created on : Dec 29, 2020, 5:43:04 PM
-    Author     : trinh
---%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -69,18 +63,17 @@
                                     </aside>
                                     <aside class="col-sm-7">
                                         <article class="card-body p-5">
-                                            <h3 class="title mb-3">Giày đi chơi tết</h3>
+                                            <h3 class="title mb-3">${product.getTitle()}</h3>
 
                                             <p class="price-detail-wrap"> 
                                                 <span class="price h3 text-warning"> 
-                                                    <span class="currency">US $</span><span class="num">$200</span>
+                                                    <span class="currency">US $</span><span class="num">$${product.getPrice()}</span>
                                                 </span> 
                                             </p> <!-- price-detail-wrap .// -->
                                             <dl class="item-property">
                                                 <dt>Description</dt>
                                                 <dd><p>
-                                                        Winter Men's Snow Boots Plus Velvet Cotton Shoes Men's Shoes Martin Cotton Boots Warm Shoes
-
+                                                        ${product.getDescription()}
                                                     </p></dd>
                                             </dl>
 
