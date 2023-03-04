@@ -57,7 +57,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach begin="1" end="5" var="o">
+                        <c:forEach items="${listMP}" var="o">
                             <tr>
                                 <td>
                                     <span class="custom-checkbox">
@@ -65,12 +65,12 @@
                                         <label for="checkbox1"></label>
                                     </span>
                                 </td>
-                                <td>1</td>
-                                <td>Giày thể thao</td>
+                                <td>${o.getId()}</td>
+                                <td>${o.getName()}</td>
                                 <td>
-                                    <img src="https://image.yes24.vn/Upload/ProductImage/GmarketSport/2058803_L.jpg?width=550&height=550">
+                                    <img src="${o.getImage()}">
                                 </td>
-                                <td>100 $</td>
+                                <td>${o.getPrice()} $</td>
                                 <td>
                                     <a href="#editEmployeeModal"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                     <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
@@ -92,7 +92,7 @@
                     </ul>
                 </div>
             </div>
-            <a href="#"><button type="button" class="btn btn-primary">Back to home</button>
+            <a href="./HomeController"><button type="button" class="btn btn-primary">Back to home</button>
 
         </div>
         <!-- Edit Modal HTML -->

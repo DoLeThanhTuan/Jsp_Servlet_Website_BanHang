@@ -71,7 +71,7 @@ public class ProductDAO {
 			}
 			return list;
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return null;
 	}
@@ -86,6 +86,43 @@ public class ProductDAO {
 				Product pro = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getString(5), rs.getString(6));
 				return pro;
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public ArrayList<Product> selectByName(String txtSearch){
+		ArrayList<Product> list = new ArrayList<>();
+		cnt = connectDB.getConnectionSqlServer();
+		String cauLenh = "select  * from product where name like ?";
+		try {
+			pst = cnt.prepareStatement(cauLenh);
+			pst.setString(1,"%"+ txtSearch+"%");
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Product pro = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(5));
+				list.add(pro);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ArrayList<Product> selectByIdSell(int i){
+		ArrayList<Product> list = new ArrayList<>();
+		cnt = connectDB.getConnectionSqlServer();
+		String cauLenh = "select p.* from product as p where p.sell_ID = ?";
+		try {
+			pst = cnt.prepareStatement(cauLenh);
+			pst.setInt(1,i);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Product pro = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(5));
+				list.add(pro);
+			}
+			return list;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

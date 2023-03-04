@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!--begin of menu-->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
@@ -9,26 +11,35 @@
 
         <div class="collapse navbar-collapse justify-content-end" id="navbarsExampleDefault">
             <ul class="navbar-nav m-auto">
+                
+                <c:if test="${sessionScope.accountLogined != null}">
+                <c:if test="${sessionScope.accountLogined.getIsAdmin() == 1}">
+                	<li class="nav-item">
+	                    <a class="nav-link" href="#">Manager Account</a>
+	                </li>
+                </c:if>
+                <c:if test="${sessionScope.accountLogined.getIsSell() == 1}">
+                	<li class="nav-item">
+	                    <a class="nav-link" href="./ManagerProductController">Manager Product</a>
+	                </li>
+                </c:if>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Manager Account</a>
+                    <a class="nav-link" href="#">Hello ${sessionScope.accountLogined.getUser()}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Manager Product</a>
+                    <a class="nav-link" href="./LogoutController">Logout</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Hello Alias</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Login.jsp">Login</a>
-                </li>
+                </c:if>
+                <c:if test="${sessionScope.accountLogined == null}">
+	                <li class="nav-item">
+	                    <a class="nav-link" href="Login.jsp">Login</a>
+	                </li>
+                </c:if>
             </ul>
 
-            <form action="search" method="post" class="form-inline my-2 my-lg-0">
+            <form action="./SearchController" method="post" class="form-inline my-2 my-lg-0">
                 <div class="input-group input-group-sm">
-                    <input name="txt" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
+                    <input value="${txtS}" name="txtSearch" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" placeholder="Search...">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-secondary btn-number">
                             <i class="fa fa-search"></i>
