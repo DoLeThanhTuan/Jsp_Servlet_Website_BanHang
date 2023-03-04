@@ -33,4 +33,38 @@ public class AccountDAO {
 		}
 		return null;
 	}
+	public void insertAc(String user,String pass) {
+		cnt = connectDB.getConnectionSqlServer();
+		try {
+			String cauLenh = "insert Account values(?,?,?,?)";
+			pst = cnt.prepareStatement(cauLenh);
+			pst.setString(1, user);
+			pst.setString(2, pass);
+			pst.setInt(3, 0);
+			pst.setInt(4, 0);
+			int kq = pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			connectDB.closeConnectionSqlSever(cnt);
+		}
+	}
+	public Account checkExistAc(String user) {
+		cnt = connectDB.getConnectionSqlServer();
+		try {
+			String cauLenh = "select * from Account where [user] = ?";
+			pst = cnt.prepareStatement(cauLenh);
+			pst.setString(1, user);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Account ac = new Account(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5));
+				return ac;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			connectDB.closeConnectionSqlSever(cnt);
+		}
+		return null;
+	}
 }

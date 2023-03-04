@@ -27,10 +27,10 @@
 </head>
 <body>
 	<div id="logreg-forms">
-		<div class="${error==1?"alert":""} alert-danger" role="alert">
-		 ${error==1?"Wrong username or password":""}
-		</div>
 		<form class="form-signin" action="./LoginController" method="post">
+			<div class="${error==1?"alert":""} alert-danger" role="alert">
+			 ${error==1?"Wrong username or password":""}
+			</div>
 			<h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
 				Sign in</h1>
 			<p class="text-danger">${mess}</p>
@@ -55,13 +55,17 @@
 			</button>
 		</form>
 
-		<form action="signup" method="post" class="form-signup">
+		<form action="./SignupController" method="post" class="form-signup">
+			<div class="${errorSU==1?" alert":""} alert-danger" role="alert">
+				${errorSU==1?"Wrong username or password":""}</div>
 			<h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
 				Sign up</h1>
 			<input name="user" type="text" id="user-name" class="form-control"
-				placeholder="User name" required="" autofocus=""> <input
+				placeholder="User name" required="" autofocus=""> 
+			<input
 				name="pass" type="password" id="user-pass" class="form-control"
-				placeholder="Password" required autofocus=""> <input
+				placeholder="Password" required autofocus="">
+			<input
 				name="repass" type="password" id="user-repeatpass"
 				class="form-control" placeholder="Repeat Password" required
 				autofocus="">
