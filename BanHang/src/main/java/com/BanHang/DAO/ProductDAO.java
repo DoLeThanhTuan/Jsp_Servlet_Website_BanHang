@@ -140,4 +140,43 @@ public class ProductDAO {
 			e.printStackTrace();
 		}
 	}
+	public void insert(String name, String image, double price,String title,
+			String desc,int cateID, int sellID) {
+		cnt = connectDB.getConnectionSqlServer();
+		String cauLenh = "insert product([name],[image],price,title,[description],cateID,sell_ID) values(?,?,?,?,?,?,?)";
+		try {
+			pst = cnt.prepareStatement(cauLenh);
+			pst.setString(1, name);
+			pst.setString(2, image);
+			pst.setDouble(3, price);
+			pst.setString(4, title);
+			pst.setString(5, desc);
+			pst.setInt(6, cateID);
+			pst.setInt(7, sellID);
+			int kq = pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		connectDB.closeConnectionSqlSever(cnt);
+	}
+	public void update(String name, String image, double price,String title,
+			String desc,int cateID,int id) {
+		cnt = connectDB.getConnectionSqlServer();
+		String cauLenh = "update product set [name]= ?, [image] = ? , price = ?, title = ? , [description] = ? , cateID = ? where id = ?";
+		try {
+			pst = cnt.prepareStatement(cauLenh);
+			pst.setString(1, name);
+			pst.setString(2, image);
+			pst.setDouble(3, price);
+			pst.setString(4, title);
+			pst.setString(5, desc);
+			pst.setInt(6, cateID);
+			pst.setInt(7, id);
+			int kq = pst.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		connectDB.closeConnectionSqlSever(cnt);
+	}
+	
 }

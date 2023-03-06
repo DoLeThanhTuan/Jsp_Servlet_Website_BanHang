@@ -31,6 +31,9 @@ img {
 	width: 200px;
 	height: 120px;
 }
+.btn_home {
+	margin-left: 168px;
+}
 </style>
 <body>
 	<div class="container">
@@ -75,39 +78,13 @@ img {
 							<td>${o.getName()}</td>
 							<td><img src="${o.getImage()}"></td>
 							<td>${o.getPrice()}$</td>
-							<td><a href="#editEmployeeModal" class="edit"
+							<td><a href="./ClickEditController?pid=${o.getId()}" class="edit"
 								data-toggle="modal"><i class="material-icons"
-									data-toggle="tooltip" title="Edit">&#xE254;</i></a> <a
-								href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+									data-toggle="tooltip" title="Edit">&#xE254;</i></a> 
+								<a href="./DeleteProductController?pid=${o.getId()}" class="delete" data-toggle="modal"><i
 									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
 							</td>
 						</tr>
-						<!-- Delete Modal HTML -->
-						<div id="deleteEmployeeModal" class="modal fade">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<form action="./DeleteProductController?pid=${o.getId()}"
-										method="post">
-										<div class="modal-header">
-											<h4 class="modal-title">Delete Product</h4>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">&times;</button>
-										</div>
-										<div class="modal-body">
-											<p>Are you sure you want to delete these Records?</p>
-											<p class="text-warning">
-												<small>This action cannot be undone.</small>
-											</p>
-										</div>
-										<div class="modal-footer">
-											<input type="button" class="btn btn-default"
-												data-dismiss="modal" value="Cancel"> <input
-												type="submit" class="btn btn-danger" value="Delete">
-										</div>
-									</form>
-								</div>
-							</div>
-						</div>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -126,14 +103,13 @@ img {
 				</ul>
 			</div>
 		</div>
-		<a href="#"><button type="button" class="btn btn-primary">Back
-				to home</button>
 	</div>
-	<!-- Edit Modal HTML -->
+	
+	<!-- Add Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form action="add" method="post">
+				<form action="./AddProductController" method="post">
 					<div class="modal-header">
 						<h4 class="modal-title">Add Product</h4>
 						<button type="button" class="close" data-dismiss="modal"
@@ -183,9 +159,9 @@ img {
 	<div id="editEmployeeModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
-				<form>
+				<form action = "./EditProductController?pid=${o.getId()}" method="post">
 					<div class="modal-header">
-						<h4 class="modal-title">Edit Employee</h4>
+						<h4 class="modal-title">Edit Product</h4>
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</button>
 					</div>
@@ -195,16 +171,28 @@ img {
 								required>
 						</div>
 						<div class="form-group">
-							<label>Email</label> <input type="email" class="form-control"
+							<label>image</label> <input name="image" type="text" class="form-control"
 								required>
 						</div>
 						<div class="form-group">
-							<label>Address</label>
-							<textarea class="form-control" required></textarea>
+							<label>Price</label> <input name="price" type="text" class="form-control"
+								required>
 						</div>
 						<div class="form-group">
-							<label>Phone</label> <input type="text" class="form-control"
-								required>
+							<label>Title</label>
+							<textarea name="title" class="form-control" required></textarea>
+						</div>
+						<div class="form-group">
+							<label>Description</label>
+							<textarea name="description" class="form-control" required></textarea>
+						</div>
+						<div class="form-group">
+							<label>Category</label> <select name="category"
+								class="form-select" aria-label="Default select example">
+								<c:forEach items="${listCate}" var="o">
+									<option value="${o.cid}">${o.cname}</option>
+								</c:forEach>
+							</select>
 						</div>
 					</div>
 					<div class="modal-footer">
@@ -218,5 +206,7 @@ img {
 	</div>
 
 	<script src="js/manager.js" type="text/javascript"></script>
+	<a href="./HomeController"><button type="button" class="btn btn-primary btn_home">Back
+				to home</button>
 </body>
 </html>
