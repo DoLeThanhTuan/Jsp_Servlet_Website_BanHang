@@ -128,4 +128,16 @@ public class ProductDAO {
 		}
 		return null;
 	}
+	public void DeleteByid(int id){
+		cnt = connectDB.getConnectionSqlServer();
+		String cauLenh = "delete Product where id = ?";
+		try {
+			pst = cnt.prepareStatement(cauLenh);
+			pst.setInt(1,id);
+			pst.executeUpdate();
+		} catch (Exception e) {
+			connectDB.closeConnectionSqlSever(cnt);
+			e.printStackTrace();
+		}
+	}
 }
