@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.BanHang.DAO.AccountDAO;
+import com.BanHang.DAO.CartDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,6 +25,7 @@ public class LoginController extends HttpServlet{
 		if(AccountDAO.getInstance().selectByUserAndPass(user, pass) != null) {
 			HttpSession session = req.getSession();
 			session.setAttribute("accountLogined", AccountDAO.getInstance().selectByUserAndPass(user, pass));
+			session.setAttribute("countCart", CartDAO.getInstance().CountCartByUserID(AccountDAO.getInstance().selectByUserAndPass(user, pass).getId()));
 			resp.sendRedirect("./HomeController");
 		}
 		else {

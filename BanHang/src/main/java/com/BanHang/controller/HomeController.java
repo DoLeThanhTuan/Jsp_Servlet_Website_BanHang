@@ -27,6 +27,6 @@ public class HomeController extends HttpServlet{
 		req.setAttribute("listCate", listCate);
 		Product proTop1 = ProductDAO.getInstance().selectTop1();
 		req.setAttribute("proTop1", proTop1);
-		req.getRequestDispatcher("Home.jsp").forward(req, resp);
+		req.getRequestDispatcher("./Home.jsp").forward(req, resp);
 	}
 }

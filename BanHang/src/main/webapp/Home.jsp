@@ -57,7 +57,7 @@
 											<p class="btn btn-danger btn-block">${o.getPrice()}</p>
 										</div>
 										<div class="col">
-											<a href="#" class="btn btn-success btn-block">Add to cart</a>
+											<a href="./addCart?pId=${o.getId()}" class="btn btn-success btn-block">Add to cart</a>
 										</div>
 									</div>
 								</div>
