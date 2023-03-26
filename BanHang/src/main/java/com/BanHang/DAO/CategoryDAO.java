@@ -18,7 +18,7 @@ public class CategoryDAO {
 	}
 	
 	public ArrayList<Category> selectAll(){
-		ArrayList<Category> list = new ArrayList<>();
+		ArrayList<Category> list = new ArrayList();
 		cnt = connectDB.getConnectionSqlServer();
 		String cauLenh = "select * from Category";
 		try {

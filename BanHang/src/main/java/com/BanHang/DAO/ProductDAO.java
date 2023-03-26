@@ -19,7 +19,7 @@ public class ProductDAO {
 	}
 	
 	public ArrayList<Product> selectAll(){
-		ArrayList<Product> l = new ArrayList<>();
+		ArrayList<Product> l = new ArrayList();
 		try {
 			this.cnt = connectDB.getConnectionSqlServer();
 			String cauLenh = "select * from product";
@@ -58,7 +58,7 @@ public class ProductDAO {
 		return null;
 	}
 	public ArrayList<Product> selectByCateId(String Cid){
-		ArrayList<Product> list = new ArrayList<>();
+		ArrayList<Product> list = new ArrayList();
 		cnt = connectDB.getConnectionSqlServer();
 		String cauLenh = "select * from product where cateID = ?";
 		try {
@@ -92,7 +92,7 @@ public class ProductDAO {
 		return null;
 	}
 	public ArrayList<Product> selectByName(String txtSearch){
-		ArrayList<Product> list = new ArrayList<>();
+		ArrayList<Product> list = new ArrayList();
 		cnt = connectDB.getConnectionSqlServer();
 		String cauLenh = "select  * from product where name like ?";
 		try {
@@ -111,7 +111,7 @@ public class ProductDAO {
 	}
 	
 	public ArrayList<Product> selectByIdSell(int i){
-		ArrayList<Product> list = new ArrayList<>();
+		ArrayList<Product> list = new ArrayList();
 		cnt = connectDB.getConnectionSqlServer();
 		String cauLenh = "select p.* from product as p where p.sell_ID = ?";
 		try {

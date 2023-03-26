@@ -69,7 +69,7 @@ public class AccountDAO {
 		return null;
 	}
 	public ArrayList<Account> selectAll(String user) {
-		ArrayList<Account> listac = new ArrayList<>();
+		ArrayList<Account> listac = new ArrayList();
 		cnt = connectDB.getConnectionSqlServer();
 		try {
 			String cauLenh = "select * from Account where [user] not in (?)";

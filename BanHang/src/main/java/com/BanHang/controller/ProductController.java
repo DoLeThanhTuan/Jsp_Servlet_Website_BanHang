@@ -28,6 +28,7 @@ public class ProductController extends HttpServlet{
 		req.setAttribute("listCate", listCate);
 		Product proTop1 = ProductDAO.getInstance().selectTop1();
 		req.setAttribute("proTop1", proTop1);
+		req.setAttribute("Pid", id);
 		req.getRequestDispatcher("./Detail.jsp").forward(req, resp);
 	}
 }

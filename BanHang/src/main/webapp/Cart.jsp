@@ -45,23 +45,23 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <c:forEach begin="1" end="3" var="o">
+                                            <c:forEach items="${order.getListOrderProduct()}" var="o">
                                                 <tr>
                                                     <th scope="row">
                                                         <div class="p-2">
-                                                            <img src="https://canary.contestimg.wish.com/api/webimage/5da3d0b594a0f07fdec6c5ac-large.jpg?cache_buster=a2471ea62eba44e7c0b0f4d2b4c64681" alt="" width="70" class="img-fluid rounded shadow-sm">
+                                                            <img src="${o.getProduct().getImage()}" alt="" width="70" class="img-fluid rounded shadow-sm">
                                                             <div class="ml-3 d-inline-block align-middle">
-                                                                <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block">Winter Men's Snow Boots Plus Velvet</a></h5><span class="text-muted font-weight-normal font-italic"></span>
+                                                                <h5 class="mb-0"> <a href="./ProductController?Pid=${o.getProduct().getId()}" class="text-dark d-inline-block">${o.getProduct().getName()}</a></h5><span class="text-muted font-weight-normal font-italic"></span>
                                                             </div>
                                                         </div>
                                                     </th>
-                                                    <td class="align-middle"><strong>100</strong></td>
+                                                    <td class="align-middle"><strong>${o.getProduct().getPrice()}</strong></td>
                                                     <td class="align-middle">
-                                                        <a href="#"><button class="btnSub">-</button></a> 
-                                                        <strong>1</strong>
-                                                        <a href="#"><button class="btnAdd">+</button></a>
+                                                        <a href="./unionCart?pid=${o.getProduct().getId()}"><button class="btnSub">-</button></a> 
+                                                        <strong>${o.getAmount()}</strong>
+                                                        <a href="./plusCart?pid=${o.getProduct().getId()}"><button class="btnAdd">+</button></a>
                                                     </td>
-                                                    <td class="align-middle"><a href="#" class="text-dark">
+                                                    <td class="align-middle"><a href="deleteCart?pid=${o.getProduct().getId()}" class="text-dark">
                                                             <button type="button" class="btn btn-danger">Delete</button>
                                                         </a>
                                                     </td>
@@ -90,11 +90,11 @@
                                 <div class="bg-light rounded-pill px-4 py-3 text-uppercase font-weight-bold">Thành tiền</div>
                                 <div class="p-4">
                                     <ul class="list-unstyled mb-4">
-                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng tiền hàng</strong><strong>100 $</strong></li>
+                                        <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng tiền hàng</strong><strong>${order.getSumPrice()}</strong></li>
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Phí vận chuyển</strong><strong>Free ship</strong></li>
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">VAT</strong><strong>10 $</strong></li>
                                         <li class="d-flex justify-content-between py-3 border-bottom"><strong class="text-muted">Tổng thanh toán</strong>
-                                            <h5 class="font-weight-bold">110 $</h5>
+                                            <h5 class="font-weight-bold">${order.getSumPrice()}</h5>
                                         </li>
                                     </ul><a href="buy" class="btn btn-dark rounded-pill py-2 btn-block">Mua hàng</a>
                                 </div>
