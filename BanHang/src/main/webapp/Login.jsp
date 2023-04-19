@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
@@ -42,16 +44,17 @@
 			<div class="form-group form-check">
 				<input name="remember" value="1" type="checkbox"
 					class="form-check-input" id="exampleCheck1"> <label
-					class="form-check-label" for="exampleCheck1">Remember me</label>
+					class="form-check-label" for="exampleCheck1">Nhớ mật khẩu</label>
 			</div>
 
 			<button class="btn btn-success btn-block" type="submit">
-				<i class="fas fa-sign-in-alt"></i> Sign in
+				<i class="fas fa-sign-in-alt"></i> Đăng nhập
 			</button>
+			<a href="./ForgetPW.jsp">Quên mật khẩu</a>
 			<hr>
 			<button class="btn btn-primary btn-block" type="button"
 				id="btn-signup">
-				<i class="fas fa-user-plus"></i> Sign up New Account
+				<i class="fas fa-user-plus"></i> Đăng ký
 			</button>
 		</form>
 
@@ -59,7 +62,7 @@
 			<div class="${errorSU==1?" alert":""} alert-danger" role="alert">
 				${errorSU==1?"Wrong username or password":""}</div>
 			<h1 class="h3 mb-3 font-weight-normal" style="text-align: center">
-				Sign up</h1>
+				Đăng ký</h1>
 			<input name="user" type="text" id="user-name" class="form-control"
 				placeholder="User name" required="" autofocus=""> 
 			<input
@@ -71,10 +74,10 @@
 				autofocus="">
 
 			<button class="btn btn-primary btn-block" type="submit">
-				<i class="fas fa-user-plus"></i> Sign Up
+				<i class="fas fa-user-plus"></i> Đăng ký
 			</button>
 			<a href="#" id="cancel_signup"><i class="fas fa-angle-left"></i>
-				Back</a>
+				Trở lại</a>
 		</form>
 		<br>
 

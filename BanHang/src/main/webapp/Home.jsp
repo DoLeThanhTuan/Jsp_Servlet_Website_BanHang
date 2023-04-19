@@ -28,8 +28,8 @@
 				<nav aria-label="breadcrumb">
 					<ol class="breadcrumb">
 						<li class="breadcrumb-item"><a href="./HomeController">Home</a></li>
-						<li class="breadcrumb-item"><a href="#">Category</a></li>
-						<li class="breadcrumb-item active" aria-current="#">Sub-category</li>
+						<li class="breadcrumb-item"><a href="#">Danh mục</a></li>
+						<li class="breadcrumb-item active" aria-current="#">Danh mục con</li>
 					</ol>
 				</nav>
 			</div>
@@ -54,10 +54,10 @@
 									<p class="card-text show_txt">${o.getTitle()}</p>
 									<div class="row">
 										<div class="col">
-											<p class="btn btn-danger btn-block">${o.getPrice()}</p>
+											<p class="btn btn-danger btn-block">${o.getPrice()} $</p>
 										</div>
 										<div class="col">
-											<a href="./addCart?pId=${o.getId()}" class="btn btn-success btn-block">Add to cart</a>
+											<a href="./addCart?pId=${o.getId()}" class="btn btn-success btn-block">Thêm vào giỏ hàng</a>
 										</div>
 									</div>
 								</div>
@@ -65,6 +65,7 @@
 						</div>
 					</c:forEach>
 				</div>
+				<jsp:include page="pageNumber.jsp"></jsp:include>
 			</div>
 
 		</div>

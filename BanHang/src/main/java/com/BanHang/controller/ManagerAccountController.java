@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.BanHang.DAO.AccountDAO;
 import com.BanHang.model.Account;
+import com.BanHang.model.PageModel;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,11 +22,17 @@ public class ManagerAccountController extends HttpServlet{
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		ArrayList<Account> listMA = new ArrayList();
 		HttpSession ss = req.getSession();
 		Account ac = (Account) ss.getAttribute("accountLogined");
-		listMA = AccountDAO.getInstance().selectAll(ac.getUser());
+		int index = 1;
+		if(req.getParameter("index")!=null)
+			index = Integer.parseInt(req.getParameter("index"));
+		ArrayList<Account> listMA = new ArrayList<>();
+		listMA = AccountDAO.getInstance().selectByNumPage(ac.getUser(),index);
 		req.setAttribute("listMA",listMA );
+		PageModel page = PageModel.getInfor(AccountDAO.getInstance().selectAll(ac.getUser()), index);
+		req.setAttribute("page", page);
+		req.setAttribute("urlController", "ManagerAccountController");
 		req.getRequestDispatcher("./ManagerAccount.jsp").forward(req, resp);
 	}
 }

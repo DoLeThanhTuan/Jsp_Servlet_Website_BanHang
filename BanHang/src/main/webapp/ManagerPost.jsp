@@ -5,7 +5,6 @@
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,15 +42,14 @@ img {
 				<div class="row">
 					<div class="col-sm-6">
 						<h2>
-							<b>Quản lý sản phẩm</b>
+							<b>Quản lý bài đăng</b>
 						</h2>
 					</div>
 					<div class="col-sm-6">
 						<a href="#addEmployeeModal" class="btn btn-success"
-							data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm mới một sản phẩm</span></a> <a href="#deleteEmployeeModal"
+							data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Thêm mới bài đăng</span></a> <a href="#deleteEmployeeModal"
 							class="btn btn-danger" data-toggle="modal"><i
-							class="material-icons">&#xE15C;</i> <span>Xóa sản phẩm</span></a>
-					</div>
+							class="material-icons">&#xE15C;</i> <span>Xóa bài đăng</span></a></div>
 				</div>
 			</div>
 			<table class="table table-striped table-hover">
@@ -64,11 +62,13 @@ img {
 						<th>Tên sản phẩm</th>
 						<th>hình ảnh</th>
 						<th>Giá</th>
-						<th>Tính năng</th>
+						<th>Chi tiết</th>>
+						<th>Duyệt</th>>
+						<th>Hủy bài</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${listMP}" var="o">
+					<c:forEach items="${listPro}" var="o">
 						<tr>
 							<td><span class="custom-checkbox"> <input
 									type="checkbox" id="checkbox1" name="options[]" value="1">
@@ -79,10 +79,11 @@ img {
 							<td><img src="${o.getImage()}"></td>
 							<td>${o.getPrice()} $</td>
 							<td><a href="./ClickEditController?pid=${o.getId()}" class="edit"
-								data-toggle="modal"><i class="material-icons"
-									data-toggle="tooltip" title="Edit">&#xE254;</i></a> 
-								<a href="./DeleteProductController?pid=${o.getId()}" class="delete" data-toggle="modal"><i
-									class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+								data-toggle="modal">Chi tiết</a> </td>
+							<td><a href="./ClickEditController?pid=${o.getId()}" class="edit"
+								data-toggle="modal">Đồng ý</a> </td>
+							<td>
+								<a href="./DeleteProductController?pid=${o.getId()}" class="delete" data-toggle="modal">Xóa</a>
 							</td>
 						</tr>
 					</c:forEach>
