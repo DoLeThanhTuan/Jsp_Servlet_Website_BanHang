@@ -88,4 +88,25 @@ public class AccountDAO {
 		}
 		return null;
 	}
+	public ArrayList<Account> selectByNumPage(String user,int numPage) {
+		ArrayList<Account> listac = new ArrayList();
+		cnt = connectDB.getConnectionSqlServer();
+		try {
+			String cauLenh = "select * from (select ROW_NUMBER() over (order by [uid] asc) as r, * from Account where [user] not in (?)) as x order by x.r offset ? rows Fetch next 6 rows only";
+			pst = cnt.prepareStatement(cauLenh);
+			pst.setString(1, user);
+			pst.setInt(2, numPage*6-6);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Account ac = new Account(rs.getInt(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getInt(6));
+				listac.add(ac);
+			}
+			return listac;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			connectDB.closeConnectionSqlSever(cnt);
+		}
+		return null;
+	}
 }

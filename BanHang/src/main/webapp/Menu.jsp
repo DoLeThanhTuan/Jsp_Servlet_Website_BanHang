@@ -4,7 +4,7 @@
 <!--begin of menu-->
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
-        <a class="navbar-brand" href="./HomeController">Shoes</a>
+        <a class="navbar-brand" href="./HomeController">Shop</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -15,24 +15,29 @@
                 <c:if test="${sessionScope.accountLogined != null}">
                 <c:if test="${sessionScope.accountLogined.getIsAdmin() == 1}">
                 	<li class="nav-item">
-	                    <a class="nav-link" href="./ManagerAccountController">Manager Account</a>
+	                    <a class="nav-link" href="./ManagerAccountController">Quản lý tài khoản</a>
+	                </li>
+                </c:if>
+                <c:if test="${sessionScope.accountLogined.getIsAdmin() == 1}">
+                	<li class="nav-item">
+	                    <a class="nav-link" href="./ManagerPost">Quản lý bài đăng</a>
 	                </li>
                 </c:if>
                 <c:if test="${sessionScope.accountLogined.getIsSell() == 1}">
                 	<li class="nav-item">
-	                    <a class="nav-link" href="./ManagerProductController">Manager Product</a>
+	                    <a class="nav-link" href="./ManagerProductController">Quản lý sản phẩm</a>
 	                </li>
                 </c:if>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Hello ${sessionScope.accountLogined.getUser()}</a>
+                    <a class="nav-link" href="#">Xin chào ${sessionScope.accountLogined.getUser()}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="./LogoutController">Logout</a>
+                    <a class="nav-link" href="./LogoutController">Đăng xuất</a>
                 </li>
                 </c:if>
                 <c:if test="${sessionScope.accountLogined == null}">
 	                <li class="nav-item">
-	                    <a class="nav-link" href="Login.jsp">Login</a>
+	                    <a class="nav-link" href="Login.jsp">Đăng nhập</a>
 	                </li>
                 </c:if>
             </ul>
@@ -58,8 +63,8 @@
 </nav>
 <section class="jumbotron text-center">
     <div class="container">
-        <h1 class="jumbotron-heading">Siêu thị giày chất lượng cao</h1>
-        <p class="lead text-muted mb-0">Uy tín tạo nên thương hiệu với hơn 10 năm cung cấp các sản phầm giày nhập từ Trung Quốc</p>
+        <h1 class="jumbotron-heading">Website mua bán đồ cũ khu vực Đà Nẵng</h1>
+        <p class="lead text-muted mb-0">Uy tín tạo nên thương hiệu, mua hàng nhanh gọn</p>
     </div>
 </section>
 <!--end of menu-->

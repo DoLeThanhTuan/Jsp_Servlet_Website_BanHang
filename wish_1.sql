@@ -146,3 +146,8 @@ INSERT [dbo].[product] ([id], [name], [image], [price], [title], [description], 
 ', 3, 7)
 SET IDENTITY_INSERT [dbo].[product] OFF
 
+-- Câu lệnh query phân trang mỗi trang 6 sản phẩm
+
+use Wish
+select * from (select ROW_NUMBER() over (order by id asc) as r, * from product) as x order by x.r offset 12 rows Fetch next 6 rows only
+

@@ -32,11 +32,10 @@
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b>Account</b></h2>
+                            <h2><b>Quản lý tài khoản </b></h2>
                         </div>
                         <div class="col-sm-6">
-                            <a href="#addEmployeeModal"  class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Account</span></a>
-                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Delete</span></a>						
+                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Xóa</span></a>						
                         </div>
                     </div>
                 </div>
@@ -50,11 +49,11 @@
                                 </span>
                             </th>
                             <th>ID</th>
-                            <th>user</th>
-                            <th>pass</th>
-                            <th>isSell</th>
-                            <th>isAdmin</th>
-                            <th>Action</th>
+                            <th>Họ và tên</th>
+                            <th>Tên đăng nhập</th>
+                            <th>Người bán</th>
+                            <th>Quản trị viên</th>
+                            <th>Tính năng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -82,15 +81,9 @@
                     </tbody>
                 </table>
                 <div class="clearfix">
-                    <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                    <div class="hint-text">Trang <b>${page.index}</b> trên tổng số <b>${page.pageNumbers}</b> trang</div>
                     <ul class="pagination">
-                        <li class="page-item disabled"><a href="#">Previous</a></li>
-                        <li class="page-item"><a href="#" class="page-link">1</a></li>
-                        <li class="page-item"><a href="#" class="page-link">2</a></li>
-                        <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                        <li class="page-item"><a href="#" class="page-link">4</a></li>
-                        <li class="page-item"><a href="#" class="page-link">5</a></li>
-                        <li class="page-item"><a href="#" class="page-link">Next</a></li>
+						<jsp:include page="./pageNumber.jsp"></jsp:include>
                     </ul>
                 </div>
             </div>
@@ -98,65 +91,17 @@
 
         </div>
         <!-- Edit Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form action="add" method="post">
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Add Product</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>Name</label>
-                                <input name="name" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Image</label>
-                                <input name="image" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Price</label>
-                                <input name="price" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Title</label>
-                                <textarea name="title" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea name="description" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select name="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach begin="1" end="3" var="o">
-                                        <option value="1">Giày Adidas</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Edit Modal HTML -->
         <div id="editEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
                         <div class="modal-header">						
-                            <h4 class="modal-title">Edit Employee</h4>
+                            <h4 class="modal-title">Chỉnh sửa tài khoản</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>Họ và tên</label>
                                 <input type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
@@ -164,17 +109,17 @@
                                 <input type="email" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Address</label>
+                                <label>Địa chỉ</label>
                                 <textarea class="form-control" required></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Phone</label>
+                                <label>Số điện thoại</label>
                                 <input type="text" class="form-control" required>
                             </div>					
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-info" value="Save">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy bỏ">
+                            <input type="submit" class="btn btn-info" value="Lưu">
                         </div>
                     </form>
                 </div>
@@ -186,16 +131,16 @@
                 <div class="modal-content">
                     <form>
                         <div class="modal-header">						
-                            <h4 class="modal-title">Delete Product</h4>
+                            <h4 class="modal-title">Xóa</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                            <p>Bạn có chắc chắn muốn xóa tài khoản này ?</p>
+                            <p class="text-warning"><small>Hành động này không thể quay lại</small></p>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-danger" value="Delete">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Hủy bỏ">
+                            <input type="submit" class="btn btn-danger" value="Xóa">
                         </div>
                     </form>
                 </div>

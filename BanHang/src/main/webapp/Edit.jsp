@@ -41,7 +41,7 @@ img {
 			<div class="modal-content">
 				<form action = "./EditProductController?pid=${pid}" method="post">
 					<div class="modal-header">
-						<h4 class="modal-title">Edit Product</h4>
+						<h4 class="modal-title">Chỉnh sửa sản phẩm</h4>
 						<a href="./ManagerProductController" type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">&times;</a>
 					</div>
@@ -51,27 +51,27 @@ img {
 								required>
 						</div>
 						<div class="form-group">
-							<label>Name</label> <input name="name" value = "${pro.getName() }" type="text" class="form-control"
+							<label>Tên sản phẩm</label> <input name="name" value = "${pro.getName() }" type="text" class="form-control"
 								required>
 						</div>
 						<div class="form-group">
-							<label>image</label> <input name="image" value = "${pro.getImage() }" type="text" class="form-control"
+							<label>Hình ảnh</label> <input name="image" value = "${pro.getImage() }" type="text" class="form-control"
 								required>
 						</div>
 						<div class="form-group">
-							<label>Price</label> <input name="price" value = "${pro.getPrice() }" type="text" class="form-control"
+							<label>Giá ($)</label> <input name="price" value = "${pro.getPrice() }" type="text" class="form-control"
 								required>
 						</div>
 						<div class="form-group">
-							<label>Title</label>
+							<label>Tiêu đề</label>
 							<textarea name="title"  class="form-control" required>${pro.getDescription()}</textarea>
 						</div>
 						<div class="form-group">
-							<label>Description</label>
+							<label>Mô tả</label>
 							<textarea name="description" class="form-control" required>${pro.getDescription()}</textarea>
 						</div>
 						<div class="form-group">
-							<label>Category</label> <select name="category"
+							<label>Danh mục</label> <select name="category"
 								class="form-select" aria-label="Default select example">
 								<c:forEach items="${listCate}" var="o">
 									<option value="${o.cid}">${o.cname}</option>
@@ -81,16 +81,15 @@ img {
 					</div>
 					<div class="modal-footer">
 						<a href="./ManagerProductController" type="button" class="btn btn-default" data-dismiss="modal"
-							>Cancel</a> 
+							>Hủy bỏ</a> 
 						<input type="submit" class="btn btn-info"
-							value="Save">
+							value="Lưu">
 					</div>
 				</form>
 			</div>
 		</div>
 		
 	<script src="js/manager.js" type="text/javascript"></script>
-	<a href="./HomeController"><button type="button" class="btn btn-primary btn_home">Back
-				to home</button>
+	<a href="./HomeController"><button type="button" class="btn btn-primary btn_home">Trở lại trang chủ</button>
 </body>
 </html>

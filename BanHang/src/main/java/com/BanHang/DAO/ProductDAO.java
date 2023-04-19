@@ -42,6 +42,49 @@ public class ProductDAO {
 		}
 		return null;
 	}
+	public ArrayList<Product> selectByNumPage(int numPage){
+		ArrayList<Product> l = new ArrayList();
+		try {
+			this.cnt = connectDB.getConnectionSqlServer();
+			String cauLenh = "select * from (select ROW_NUMBER() over (order by id asc) as r, * from product) as x order by x.r offset ? rows Fetch next 6 rows only";
+			pst = cnt.prepareStatement(cauLenh);
+			pst.setInt(1, numPage*6-6);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Product prd = new Product(rs.getInt(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getDouble(5),
+						rs.getString(6),
+						rs.getString(7));
+				l.add(prd);
+			}
+			return l;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			connectDB.closeConnectionSqlSever(cnt);
+		}
+		return null;
+	}
+	public int CountAll(){
+		int kq = 0;
+		try {
+			this.cnt = connectDB.getConnectionSqlServer();
+			String cauLenh = "select count(*) as t from product";
+			pst = cnt.prepareStatement(cauLenh);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				kq = rs.getInt("t");
+			}
+			return kq;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			connectDB.closeConnectionSqlSever(cnt);
+		}
+		return 0;
+	}
 	public Product selectTop1() {
 		cnt = connectDB.getConnectionSqlServer();
 		String cauLenh = "select top(1) * from product order by id desc";
@@ -120,6 +163,25 @@ public class ProductDAO {
 			rs = pst.executeQuery();
 			while(rs.next()) {
 				Product pro = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getString(5));
+				list.add(pro);
+			}
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public ArrayList<Product> selectByIdSellAndNumPage(int id,int numPage){
+		ArrayList<Product> list = new ArrayList();
+		cnt = connectDB.getConnectionSqlServer();
+		String cauLenh = "select * from (select ROW_NUMBER() over (order by id asc) as r, * from product where sell_ID = ?) as x order by x.r offset ? rows Fetch next 6 rows only";
+		try {
+			pst = cnt.prepareStatement(cauLenh);
+			pst.setInt(1,id);
+			pst.setInt(2, numPage*6-6);
+			rs = pst.executeQuery();
+			while(rs.next()) {
+				Product pro = new Product(rs.getInt(2), rs.getString(3), rs.getString(4), rs.getInt(5), rs.getString(6), rs.getString(7));
 				list.add(pro);
 			}
 			return list;
